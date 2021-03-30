@@ -11,14 +11,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
-    env:
-        FQKK_URL: ${{ secrets.FQKK_URL }}
-        FQKK_HD: ${{ secrets.FQKK_HD }}       
-        TZ: Asia/shanghai
+          
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
-        
+        uses: actions/checkout@v1    
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
@@ -27,7 +23,6 @@ jobs:
         run: |
           npm install
       - name: '运行 【番茄看看】'
-        if: env.FQKK_URL
         run: |
           node fqkk.js
         env:
